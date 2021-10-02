@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import Controller from '../interfaces/Controller';
+import { BaseController } from '../interfaces/Controller';
 import { OfficeController } from './OfficeController';
 
-class MainController implements Controller {
-  public path = '/api';
-  public router = Router();
+class MainController implements BaseController {
+  path = '/api';
+  router = Router();
 
   constructor() {
     this.initializeRoutes();
@@ -12,6 +12,7 @@ class MainController implements Controller {
 
   private initializeRoutes(): void {
     const officeController = new OfficeController();
+    this.router.use(`${this.path}`, officeController.router);
     this.router.use(`${this.path}`, officeController.router);
   }
 }

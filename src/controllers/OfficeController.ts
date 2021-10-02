@@ -1,23 +1,23 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { Office } from '../entity/Office';
-import Controller from '../interfaces/Controller';
+import { RouteController } from '../interfaces/Controller';
 import { OfficeService } from '../services/OfficeService';
 
-export class OfficeController implements Controller {
-  public path = '/offices';
-  public router = Router();
+export class OfficeController implements RouteController {
+  path = '/offices';
+  router = Router();
 
   constructor() {
     this.initializeRoutes();
   }
 
-  private initializeRoutes(): void {
+  initializeRoutes(): void {
     this.router.get(`${this.path}`, this.getAll);
     this.router.get(`${this.path}/:officeCode`, this.getOne);
     this.router.post(`${this.path}`, this.create);
   }
 
-  private async getAll(req: Request, res: Response, next: NextFunction): Promise<Response<Office[]> | undefined> {
+  async getAll(req: Request, res: Response, next: NextFunction): Promise<Response<Office[]> | undefined> {
     try {
       const officeService = new OfficeService();
       const results = await officeService.getAll();
@@ -27,7 +27,7 @@ export class OfficeController implements Controller {
     }
   }
 
-  private async getOne(req: Request, res: Response, next: NextFunction): Promise<Response<Office[]> | undefined> {
+  async getOne(req: Request, res: Response, next: NextFunction): Promise<Response<Office[]> | undefined> {
     try {
       const officeService = new OfficeService();
       const results = await officeService.getOne(req.params.officeCode);
@@ -37,7 +37,7 @@ export class OfficeController implements Controller {
     }
   }
 
-  private async create(req: Request, res: Response, next: NextFunction): Promise<Response<any> | undefined> {
+  async create(req: Request, res: Response, next: NextFunction): Promise<Response<any> | undefined> {
     try {
       const officeService = new OfficeService();
       const result = await officeService.create(req.body);
