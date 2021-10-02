@@ -5,6 +5,6 @@ export interface EmployeeModel {
   extension: string;
   email: string;
   officeCode: string;
-  manager?: number;
+  manager: number | null;
   jobTitle: string;
 }

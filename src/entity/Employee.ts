@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 import { EmployeeModel } from '../models/EmployeeModel';
 import { Office } from './Office';
 
@@ -20,12 +20,14 @@ export class Employee implements EmployeeModel {
   email!: string;
 
   @Column({ type: 'varchar', length: 10, nullable: false })
-  @ManyToOne(() => Office, (office) => office.officeCode)
+  @ManyToOne(() => Office)
+  @JoinColumn({ name: 'officeCode' })
   officeCode!: string;
 
-  @Column({ type: 'int', default: null })
-  @OneToOne(() => Employee, (employee) => employee.employeeNumber)
-  manager!: number;
+  @Column({ type: 'int', nullable: true })
+  @OneToOne(() => Employee)
+  @JoinColumn({ name: 'employeeNumber' })
+  manager!: number | null;
 
   @Column({ type: 'varchar', length: 50, nullable: false })
   jobTitle!: string;
