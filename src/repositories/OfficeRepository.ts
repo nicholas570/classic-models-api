@@ -1,22 +1,22 @@
-import Repository from '../interfaces/Repository';
+import { AppRepository } from '../interfaces/Repository';
 import { getConnection } from 'typeorm';
 import { Office } from '../entity/Office';
 
-export class OfficeRepository implements Repository {
-  public ORMrepository = getConnection().getRepository(Office);
+export class OfficeRepository implements AppRepository {
+  repository = getConnection().getRepository(Office);
 
-  public async getAll(): Promise<Office[]> {
-    const offices = await this.ORMrepository.find();
+  async getAll(): Promise<Office[]> {
+    const offices = await this.repository.find();
     return offices;
   }
 
-  public async getOne(officeCode: string): Promise<Office | undefined> {
-    const office = await this.ORMrepository.findOne({ where: { officeCode } });
+  async getOne(officeCode: string): Promise<Office | undefined> {
+    const office = await this.repository.findOne({ where: { officeCode } });
     return office;
   }
 
-  public async create(office: Office): Promise<Office | undefined> {
-    const newOffice = await this.ORMrepository.save(office);
+  async create(office: Office): Promise<Office | undefined> {
+    const newOffice = await this.repository.save(office);
     return newOffice;
   }
 }

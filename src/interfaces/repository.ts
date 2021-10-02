@@ -1,7 +1,9 @@
-interface Repository {
-  getAll: () => Promise<any>;
-  getOne: (param: any) => Promise<any>;
-  create: (param: any) => Promise<any>;
-}
+import { Repository } from 'typeorm';
 
-export default Repository;
+export interface AppRepository {
+  repository: Repository<any>;
+
+  getAll(): Promise<any>;
+  getOne(param: any): Promise<any>;
+  create(param: any): Promise<any>;
+}

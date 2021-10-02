@@ -3,20 +3,20 @@ import { Service } from '../interfaces/Service';
 import { OfficeRepository } from '../repositories/OfficeRepository';
 
 export class OfficeService implements Service {
-  private officeRepository = new OfficeRepository();
+  repository = new OfficeRepository();
 
-  public async getAll(): Promise<Office[]> {
-    const results = await this.officeRepository.getAll();
+  async getAll(): Promise<Office[]> {
+    const results = await this.repository.getAll();
     return results;
   }
 
-  public async getOne(officeCode: string): Promise<Office | undefined> {
-    const result = await this.officeRepository.getOne(officeCode);
+  async getOne(officeCode: string): Promise<Office | undefined> {
+    const result = await this.repository.getOne(officeCode);
     return result;
   }
 
-  public async create(office: Office): Promise<Office | undefined> {
-    const results = await this.officeRepository.create(office);
+  async create(office: Office): Promise<Office | undefined> {
+    const results = await this.repository.create(office);
     return results;
   }
 }

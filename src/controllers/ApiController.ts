@@ -13,7 +13,6 @@ class MainController implements BaseController {
   private initializeRoutes(): void {
     const officeController = new OfficeController();
     this.router.use(`${this.path}`, officeController.router);
-    this.router.use(`${this.path}`, officeController.router);
   }
 }
 
