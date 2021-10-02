@@ -4,6 +4,7 @@ import options from '../config/cors';
 import errorHandler from '../middlewares/errorsMiddleware';
 import ApiController from '../controllers/ApiController';
 import dotenv from 'dotenv';
+import connect from '../database/connection';
 
 dotenv.config();
 
@@ -44,7 +45,7 @@ class App {
   }
 
   private connectToTheDatabase(): void {
-    console.log('connected');
+    connect();
   }
 }
 
