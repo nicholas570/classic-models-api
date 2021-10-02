@@ -1,5 +1,4 @@
 import { Office } from '../entity/Office';
-import { toOfficeEntity } from '../helper/office';
 import { Service } from '../interfaces/Service';
 import { OfficeRepository } from '../repositories/OfficeRepository';
 
@@ -17,8 +16,7 @@ export class OfficeService implements Service {
   }
 
   public async create(office: Office): Promise<Office | undefined> {
-    const newOffice = toOfficeEntity(office);
-    const results = await this.officeRepository.create(newOffice);
+    const results = await this.officeRepository.create(office);
     return results;
   }
 }
