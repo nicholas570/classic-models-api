@@ -1,7 +1,4 @@
-import User from '../models/UserModel';
-
-interface Service {
-  getAll: () => Promise<User[]>;
+export interface Service {
+  getAll: () => Promise<any[]>;
+  create: (param: any) => Promise<any>;
 }
-
-export default Service;
