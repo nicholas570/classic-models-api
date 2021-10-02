@@ -13,6 +13,7 @@ export class OfficeController implements Controller {
 
   private initializeRoutes(): void {
     this.router.get(`${this.path}`, this.getAll);
+    this.router.get(`${this.path}/:officeCode`, this.getOne);
     this.router.post(`${this.path}`, this.create);
   }
 
@@ -20,6 +21,16 @@ export class OfficeController implements Controller {
     try {
       const officeService = new OfficeService();
       const results = await officeService.getAll();
+      return res.status(200).json(results);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  private async getOne(req: Request, res: Response, next: NextFunction): Promise<Response<Office[]> | undefined> {
+    try {
+      const officeService = new OfficeService();
+      const results = await officeService.getOne(req.params.officeCode);
       return res.status(200).json(results);
     } catch (error) {
       next(error);

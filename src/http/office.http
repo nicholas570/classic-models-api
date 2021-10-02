@@ -3,6 +3,11 @@ content-type: application/json
 
 ###
 
+Get http://localhost:8080/api/offices/2 HTTP/1.1
+content-type: application/json
+
+###
+
 POST http://localhost:8080/api/offices HTTP/1.1
 content-type: application/json
 
