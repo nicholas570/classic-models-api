@@ -1,9 +1,9 @@
-Get http://localhost:8080/api/employees HTTP/1.1
+GET http://localhost:8080/api/employees HTTP/1.1
 content-type: application/json
 
 ###
 
-Get http://localhost:8080/api/employees/3 HTTP/1.1
+GET http://localhost:8080/api/employees/11 HTTP/1.1
 content-type: application/json
 
 ###
@@ -35,3 +35,9 @@ content-type: application/json
   "manager": "3",
   "jobTitle": "Sales Rep"
 }
+
+
+###
+
+DELETE  http://localhost:8080/api/employees/11 HTTP/1.1
+content-type: application/json

@@ -16,6 +16,7 @@ export class EmployeeController implements RouteController {
     this.router.get(`${this.path}/:employeeNumber`, this.getOne);
     this.router.post(`${this.path}`, this.create);
     this.router.put(`${this.path}/:employeeNumber`, this.update);
+    this.router.delete(`${this.path}/:employeeNumber`, this.delete);
   }
 
   async getAll(req: Request, res: Response, next: NextFunction): Promise<Response<Employee[]> | undefined> {
@@ -52,7 +53,19 @@ export class EmployeeController implements RouteController {
     try {
       const employeeService = new EmployeeService();
       const result = await employeeService.update(req.params.employeeNumber, req.body);
-      return res.status(201).json(result);
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async delete(req: Request, res: Response, next: NextFunction): Promise<Response<Employee> | undefined> {
+    try {
+      const employeeService = new EmployeeService();
+      const result = await employeeService.delete(req.params.employeeNumber);
+      if (result.affected) {
+        return res.status(200).json({ message: `Successfuly deleted employee ${req.params.employeeNumber}` });
+      }
     } catch (error) {
       next(error);
     }

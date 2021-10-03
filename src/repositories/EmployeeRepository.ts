@@ -1,5 +1,5 @@
 import { AppRepository } from '../interfaces/Repository';
-import { getConnection } from 'typeorm';
+import { DeleteResult, getConnection } from 'typeorm';
 import { Employee } from '../entity/Employee';
 
 export class EmployeeRepository implements AppRepository {
@@ -26,5 +26,10 @@ export class EmployeeRepository implements AppRepository {
       const updatedOffice = await this.repository.findOne(employee);
       return updatedOffice;
     }
+  }
+
+  async delete(employeeNumber: string): Promise<DeleteResult> {
+    const result = await this.repository.delete(employeeNumber);
+    return result;
   }
 }
