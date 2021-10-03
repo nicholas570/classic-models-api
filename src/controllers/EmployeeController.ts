@@ -15,6 +15,7 @@ export class EmployeeController implements RouteController {
     this.router.get(`${this.path}`, this.getAll);
     this.router.get(`${this.path}/:employeeNumber`, this.getOne);
     this.router.post(`${this.path}`, this.create);
+    this.router.put(`${this.path}/:employeeNumber`, this.update);
   }
 
   async getAll(req: Request, res: Response, next: NextFunction): Promise<Response<Employee[]> | undefined> {
@@ -41,6 +42,16 @@ export class EmployeeController implements RouteController {
     try {
       const employeeService = new EmployeeService();
       const result = await employeeService.create(req.body);
+      return res.status(201).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async update(req: Request, res: Response, next: NextFunction): Promise<Response<Employee> | undefined> {
+    try {
+      const employeeService = new EmployeeService();
+      const result = await employeeService.update(req.params.employeeNumber, req.body);
       return res.status(201).json(result);
     } catch (error) {
       next(error);

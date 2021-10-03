@@ -20,7 +20,11 @@ export class EmployeeRepository implements AppRepository {
     return newEmployee;
   }
 
-  async update(id: number, employee: Employee): Promise<Employee | undefined> {
-    return undefined;
+  async update(employeeNumber: string, employee: Employee): Promise<Employee | undefined> {
+    const result = await this.repository.update(employeeNumber, employee);
+    if (result.affected === 1) {
+      const updatedOffice = await this.repository.findOne(employee);
+      return updatedOffice;
+    }
   }
 }

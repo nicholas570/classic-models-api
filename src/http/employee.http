@@ -20,3 +20,18 @@ content-type: application/json
   "manager": "3",
   "jobTitle": "Sales Rep"
 }
+
+###
+
+PUT http://localhost:8080/api/employees/11 HTTP/1.1
+content-type: application/json
+
+{
+  "lastName": "Nishi",
+  "firstName": "Mami",
+  "extension": "x101",
+  "email": "mnishi@classicmodelcars.com",
+  "officeCode": "6",
+  "manager": "3",
+  "jobTitle": "Sales Rep"
+}

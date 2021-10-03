@@ -10,4 +10,5 @@ export interface RouteController extends BaseController {
   getAll(req: Request, res: Response, next: NextFunction): Promise<any>;
   getOne(req: Request, res: Response, next: NextFunction): Promise<any>;
   create(req: Request, res: Response, next: NextFunction): Promise<any>;
+  update(req: Request, res: Response, next: NextFunction): Promise<any>;
 }

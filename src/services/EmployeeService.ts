@@ -20,7 +20,8 @@ export class EmployeeService implements Service {
     return results;
   }
 
-  async update(id: number, employee: Employee): Promise<Employee | undefined> {
-    return undefined;
+  async update(employeeNumber: string, employee: Employee): Promise<Employee | undefined> {
+    const result = await this.repository.update(employeeNumber, employee);
+    return result;
   }
 }
