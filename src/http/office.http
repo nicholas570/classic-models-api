@@ -3,7 +3,7 @@ content-type: application/json
 
 ###
 
-Get http://localhost:8080/api/offices/2 HTTP/1.1
+Get http://localhost:8080/api/offices/123 HTTP/1.1
 content-type: application/json
 
 ###
@@ -42,7 +42,7 @@ content-type: application/json
 
 ###
 
-DELETE  http://localhost:8080/api/offices/7 HTTP/1.1
+DELETE  http://localhost:8080/api/offices/1234 HTTP/1.1
 content-type: application/json
 
 ###

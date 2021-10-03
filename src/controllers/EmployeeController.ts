@@ -1,5 +1,8 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { Employee } from '../entity/Employee';
+import { DeleteException } from '../exceptions/DeleteException';
+import { EmptyResultException } from '../exceptions/EmptyResultException';
+import { EntityNotFoundException } from '../exceptions/NotFoundException';
 import { RouteController } from '../interfaces/Controller';
 import { EmployeeService } from '../services/EmployeeService';
 
@@ -23,7 +26,11 @@ export class EmployeeController implements RouteController {
     try {
       const employeeService = new EmployeeService();
       const results = await employeeService.getAll();
-      return res.status(200).json(results);
+      if (results.length) {
+        return res.status(200).json(results);
+      } else {
+        throw new EmptyResultException('Employee');
+      }
     } catch (error) {
       next(error);
     }
@@ -32,8 +39,12 @@ export class EmployeeController implements RouteController {
   async getOne(req: Request, res: Response, next: NextFunction): Promise<Response<Employee> | undefined> {
     try {
       const employeeService = new EmployeeService();
-      const results = await employeeService.getOne(parseInt(req.params.employeeNumber));
-      return res.status(200).json(results);
+      const result = await employeeService.getOne(parseInt(req.params.employeeNumber));
+      if (result) {
+        return res.status(200).json(result);
+      } else {
+        throw new EntityNotFoundException(req.params.employeeNumber, 'Employee');
+      }
     } catch (error) {
       next(error);
     }
@@ -65,6 +76,8 @@ export class EmployeeController implements RouteController {
       const result = await employeeService.delete(req.params.employeeNumber);
       if (result.affected) {
         return res.status(200).json({ message: `Successfuly deleted employee ${req.params.employeeNumber}` });
+      } else {
+        throw new DeleteException(req.params.employeeNumber, 'employee');
       }
     } catch (error) {
       next(error);
