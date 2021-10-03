@@ -25,11 +25,11 @@ export class EmployeeController implements RouteController {
   async getAll(req: Request, res: Response, next: NextFunction): Promise<Response<Employee[]> | undefined> {
     try {
       const employeeService = new EmployeeService();
-      const results = await employeeService.getAll();
+      const results = await employeeService.getAll(req.query);
       if (results.length) {
         return res.status(200).json(results);
       } else {
-        throw new EmptySearchException('employees');
+        throw new EmptySearchException(`employees ${Object.entries(req.query).length ? 'with these filters' : ''}`);
       }
     } catch (error) {
       next(error);

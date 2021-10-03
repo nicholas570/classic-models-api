@@ -1,13 +1,14 @@
 import { DeleteResult } from 'typeorm';
 import { Employee } from '../entity/Employee';
+import { SearchQueryFilters } from '../interfaces/SearchQuery';
 import { Service } from '../interfaces/Service';
 import { EmployeeRepository } from '../repositories/EmployeeRepository';
 
 export class EmployeeService implements Service {
   repository = new EmployeeRepository();
 
-  async getAll(): Promise<Employee[]> {
-    const results = await this.repository.getAll();
+  async getAll(filters: SearchQueryFilters): Promise<Employee[]> {
+    const results = await this.repository.getAll(filters);
     return results;
   }
 

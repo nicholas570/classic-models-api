@@ -1,12 +1,13 @@
 import { AppRepository } from '../interfaces/Repository';
 import { DeleteResult, getConnection } from 'typeorm';
 import { Employee } from '../entity/Employee';
+import { SearchQueryFilters } from '../interfaces/SearchQuery';
 
 export class EmployeeRepository implements AppRepository {
   repository = getConnection().getRepository(Employee);
 
-  async getAll(): Promise<Employee[]> {
-    const employees = await this.repository.find();
+  async getAll(filters: SearchQueryFilters): Promise<Employee[]> {
+    const employees = await this.repository.find({ where: filters });
     return employees;
   }
 
