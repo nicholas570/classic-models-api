@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import { Employee } from '../entity/Employee';
 import { DeleteException } from '../exceptions/DeleteException';
-import { EmptyResultException } from '../exceptions/EmptyResultException';
+import { EmptySearchException } from '../exceptions/EmptyResultException';
 import { EntityNotFoundException } from '../exceptions/NotFoundException';
 import { RouteController } from '../interfaces/Controller';
 import { EmployeeService } from '../services/EmployeeService';
@@ -29,7 +29,7 @@ export class EmployeeController implements RouteController {
       if (results.length) {
         return res.status(200).json(results);
       } else {
-        throw new EmptyResultException('Employee');
+        throw new EmptySearchException('Employees');
       }
     } catch (error) {
       next(error);
