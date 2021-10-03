@@ -1,3 +1,4 @@
+import { DeleteResult } from 'typeorm';
 import { Office } from '../entity/Office';
 import { Service } from '../interfaces/Service';
 import { OfficeRepository } from '../repositories/OfficeRepository';
@@ -23,5 +24,10 @@ export class OfficeService implements Service {
   async update(officeCode: string, office: Office): Promise<Office | undefined> {
     const results = await this.repository.update(officeCode, office);
     return results;
+  }
+
+  async delete(officeCode: string): Promise<DeleteResult> {
+    const result = await this.repository.delete(officeCode);
+    return result;
   }
 }

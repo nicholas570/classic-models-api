@@ -16,6 +16,7 @@ export class OfficeController implements RouteController {
     this.router.get(`${this.path}/:officeCode`, this.getOne);
     this.router.post(`${this.path}`, this.create);
     this.router.put(`${this.path}/:officeCode`, this.update);
+    this.router.delete(`${this.path}/:officeCode`, this.delete);
   }
 
   async getAll(req: Request, res: Response, next: NextFunction): Promise<Response<Office[]> | undefined> {
@@ -52,7 +53,19 @@ export class OfficeController implements RouteController {
     try {
       const officeService = new OfficeService();
       const result = await officeService.update(req.params.officeCode, req.body);
-      return res.status(201).json(result);
+      return res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async delete(req: Request, res: Response, next: NextFunction): Promise<Response<Office> | undefined> {
+    try {
+      const officeService = new OfficeService();
+      const result = await officeService.delete(req.params.officeCode);
+      if (result.affected) {
+        return res.status(200).json({ message: `Successfuly deleted office ${req.params.officeCode}` });
+      }
     } catch (error) {
       next(error);
     }

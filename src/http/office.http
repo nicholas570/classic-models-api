@@ -39,3 +39,10 @@ content-type: application/json
   "postalCode": "EC2N 1HN",
   "territory": "EMEA"
 }
+
+###
+
+DELETE  http://localhost:8080/api/offices/7 HTTP/1.1
+content-type: application/json
+
+###

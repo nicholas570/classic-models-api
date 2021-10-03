@@ -1,5 +1,5 @@
 import { AppRepository } from '../interfaces/Repository';
-import { getConnection } from 'typeorm';
+import { DeleteResult, getConnection } from 'typeorm';
 import { Office } from '../entity/Office';
 
 export class OfficeRepository implements AppRepository {
@@ -26,5 +26,10 @@ export class OfficeRepository implements AppRepository {
       const updatedOffice = await this.repository.findOne(office);
       return updatedOffice;
     }
+  }
+
+  async delete(officeCode: string): Promise<DeleteResult> {
+    const result = await this.repository.delete(officeCode);
+    return result;
   }
 }
