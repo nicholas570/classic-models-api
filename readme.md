@@ -24,12 +24,13 @@
 
 ## About The Project
 
-This application is an Express starter, configured with TypeScript/Eslint/Prettier, a precommit hook and the MVC architecture
+This is a basic CRUD implementation
 
 ### Built With
 
 - [Node](https://nodejs.org/)
 - [Express](https://expressjs.com/)
+- [TypeOrm](https://typeorm.io/#/)
 
 <!-- GETTING STARTED -->
 
@@ -38,6 +39,8 @@ This application is an Express starter, configured with TypeScript/Eslint/Pretti
 To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
+
+You need to install this Mysql database: https://www.mysqltutorial.org/mysql-sample-database.aspx
 
 - npm
   ```sh
@@ -52,7 +55,7 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/nicholas570/express-ts-eslint-prettier-starter-classes.git
+   git clone https://github.com/nicholas570/TypeOrm-MySql.git
    ```
 2. Install NPM packages
    ```sh
@@ -67,12 +70,18 @@ To get a local copy up and running follow these simple steps.
 
 ### Env sample
 
-```
-#DATABASE
-DB_HOST=<YOUR_HOST>
-DB_NAME=<YOUR_DB_NAME>
-DB_USER=<YOUR_DB_USER>
-DB_PASSWORD=<YOUR_DB_PASSWORD>
+```sh
+PORT=8080
+
+TYPEORM_CONNECTION = <mysql>
+TYPEORM_HOST = <localhost>
+TYPEORM_PORT = <3306>
+TYPEORM_USERNAME = <username>
+TYPEORM_PASSWORD = <pwd>
+TYPEORM_DATABASE = <db>
+TYPEORM_SYNCHRONIZE = <true>
+TYPEORM_LOGGING = <false>
+TYPEORM_ENTITIES = <src/entity/**/*.ts>
 ...
 ```
 
@@ -80,14 +89,15 @@ DB_PASSWORD=<YOUR_DB_PASSWORD>
 
 ### API Routes:
 
-| Method |   Path    |    Purpose    |
-| :----: | :-------: | :-----------: |
-|  GET   | /api/test | fake endpoint |
-
-<!-- ACKNOWLEDGEMENTS -->
-
-## Acknowledgements
-
-- [Eslint](https://eslint.org/)
-- [Ts](https://www.typescriptlang.org/)
-- [Husky](https://github.com/typicode/husky)
+| Method |              Path              |        Purpose         |
+| :----: | :----------------------------: | :--------------------: |
+|  GET   |   /api/employees?officeCode    | Retrieve all employees |
+|  GET   | /api/employees/:employeeNumber | Retrieve one employee  |
+|  POST  |         /api/employees         |  Create one employee   |
+|  PUT   | /api/employees/:employeeNumber |  Update one employee   |
+| DELETE | /api/employees/:employeeNumber |  Delete one employee   |
+|  GET   |          /api/offices          |  Retrieve all offices  |
+|  GET   |    /api/offices/:officeCode    |  Retrieve one office   |
+|  POST  |          /api/offices          |   Create one office    |
+|  PUT   |    /api/offices/:officeCode    |   Update one office    |
+| DELETE |    /api/offices/:officeCode    |   Delete one office    |
