@@ -3,6 +3,11 @@ content-type: application/json
 
 ###
 
+GET http://localhost:8080/api/employees HTTP/1.1
+content-type: application/json
+
+###
+
 GET http://localhost:8080/api/employees/1134 HTTP/1.1
 content-type: application/json
 

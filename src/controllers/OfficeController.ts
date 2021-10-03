@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import { Office } from '../entity/Office';
 import { DeleteException } from '../exceptions/DeleteException';
-import { EmptyResultException } from '../exceptions/EmptyResultException';
+import { EmptySearchException } from '../exceptions/EmptySearchException';
 import { EntityNotFoundException } from '../exceptions/NotFoundException';
 import { RouteController } from '../interfaces/Controller';
 import { OfficeService } from '../services/OfficeService';
@@ -29,7 +29,7 @@ export class OfficeController implements RouteController {
       if (results.length) {
         return res.status(200).json(results);
       } else {
-        throw new EmptyResultException('Office');
+        throw new EmptySearchException('offices');
       }
     } catch (error) {
       next(error);

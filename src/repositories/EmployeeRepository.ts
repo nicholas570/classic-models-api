@@ -10,6 +10,11 @@ export class EmployeeRepository implements AppRepository {
     return employees;
   }
 
+  async getAllByOffice(officeCode: string): Promise<Employee[]> {
+    const employees = await this.repository.find({ where: { officeCode } });
+    return employees;
+  }
+
   async getOne(employeeNumber: number): Promise<Employee | undefined> {
     const employee = await this.repository.findOne({ where: { employeeNumber } });
     return employee;

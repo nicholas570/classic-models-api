@@ -11,6 +11,11 @@ export class EmployeeService implements Service {
     return results;
   }
 
+  async getAllByOffice(officeCode: string): Promise<Employee[]> {
+    const results = await this.repository.getAllByOffice(officeCode);
+    return results;
+  }
+
   async getOne(employeeNumber: number): Promise<Employee | undefined> {
     const result = await this.repository.getOne(employeeNumber);
     return result;

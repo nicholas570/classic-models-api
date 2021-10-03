@@ -30,8 +30,6 @@ export class OfficeRepository implements AppRepository {
 
   async delete(officeCode: string): Promise<DeleteResult> {
     const result = await this.repository.delete(officeCode);
-    console.log(result);
-
     return result;
   }
 }
