@@ -15,6 +15,7 @@ export class OfficeController implements RouteController {
     this.router.get(`${this.path}`, this.getAll);
     this.router.get(`${this.path}/:officeCode`, this.getOne);
     this.router.post(`${this.path}`, this.create);
+    this.router.put(`${this.path}/:officeCode`, this.update);
   }
 
   async getAll(req: Request, res: Response, next: NextFunction): Promise<Response<Office[]> | undefined> {
@@ -37,10 +38,20 @@ export class OfficeController implements RouteController {
     }
   }
 
-  async create(req: Request, res: Response, next: NextFunction): Promise<Response<any> | undefined> {
+  async create(req: Request, res: Response, next: NextFunction): Promise<Response<Office> | undefined> {
     try {
       const officeService = new OfficeService();
       const result = await officeService.create(req.body);
+      return res.status(201).json(result);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async update(req: Request, res: Response, next: NextFunction): Promise<Response<Office> | undefined> {
+    try {
+      const officeService = new OfficeService();
+      const result = await officeService.update(req.params.officeCode, req.body);
       return res.status(201).json(result);
     } catch (error) {
       next(error);

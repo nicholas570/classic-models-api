@@ -19,4 +19,8 @@ export class EmployeeRepository implements AppRepository {
     const newEmployee = await this.repository.save(employee);
     return newEmployee;
   }
+
+  async update(id: number, employee: Employee): Promise<Employee | undefined> {
+    return undefined;
+  }
 }

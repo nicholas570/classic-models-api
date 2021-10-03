@@ -19,4 +19,8 @@ export class EmployeeService implements Service {
     const results = await this.repository.create(employee);
     return results;
   }
+
+  async update(id: number, employee: Employee): Promise<Employee | undefined> {
+    return undefined;
+  }
 }

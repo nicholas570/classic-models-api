@@ -19,4 +19,12 @@ export class OfficeRepository implements AppRepository {
     const newOffice = await this.repository.save(office);
     return newOffice;
   }
+
+  async update(officeCode: string, office: Office): Promise<Office | undefined> {
+    const result = await this.repository.update(officeCode, office);
+    if (result.affected === 1) {
+      const updatedOffice = await this.repository.findOne(office);
+      return updatedOffice;
+    }
+  }
 }

@@ -22,3 +22,20 @@ content-type: application/json
   "postalCode": "EC2N 1HN",
   "territory": "EMEA"
 }
+
+###
+
+PUT http://localhost:8080/api/offices/7 HTTP/1.1
+content-type: application/json
+
+{
+  "officeCode": "7",
+  "city": "London",
+  "phone":"+44 20 7877 2041",
+  "addressLine1": "25 Old Broad Street",
+  "addressLine2": "Level 7",
+  "state": "NULL",
+  "country": "UK",
+  "postalCode": "EC2N 1HN",
+  "territory": "EMEA"
+}

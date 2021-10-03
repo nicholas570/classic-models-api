@@ -19,4 +19,9 @@ export class OfficeService implements Service {
     const results = await this.repository.create(office);
     return results;
   }
+
+  async update(officeCode: string, office: Office): Promise<Office | undefined> {
+    const results = await this.repository.update(officeCode, office);
+    return results;
+  }
 }
