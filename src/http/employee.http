@@ -13,6 +13,10 @@ content-type: application/json
 
 ###
 
+GET http://localhost:8080/api/auth/dmurphy@classicmodelcars.com HTTP/1.1
+content-type: application/json
+###
+
 POST http://localhost:8080/api/employees HTTP/1.1
 content-type: application/json
 
