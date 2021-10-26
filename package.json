@@ -11,7 +11,7 @@
     "lint": "eslint . --ext .ts --fix",
     "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
     "precommit": "lint-staged",
-    "tsc": "npm run tsc"
+    "tsc": "tsc"
   },
   "lint-staged": {
     "src/**/*.ts*": [
