@@ -11,9 +11,9 @@ export const ormConfig = {
   database: process.env.TYPEORM_DATABASE,
   synchronize: process.env.TYPEORM_SYNCHRONIZE,
   logging: process.env.TYPEORM_LOGGING,
-  entities: ['dist/**/*.entity.js'],
-  migrations: ['src/migration/**/*.js'],
-  subscribers: ['src/subscriber/**/*.js'],
+  entities: ['dist/entity/**/*.js'],
+  migrations: ['dist/migration/**/*.js'],
+  subscribers: ['dist/subscriber/**/*.js'],
   cli: {
     entitiesDir: 'src/entity',
     migrationsDir: 'src/migration',
