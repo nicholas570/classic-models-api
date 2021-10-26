@@ -22,6 +22,11 @@ export class EmployeeService implements Service {
     return result;
   }
 
+  async getOneByEmail(email: string): Promise<Employee | undefined> {
+    const result = await this.repository.getOneByEmail(email);
+    return result;
+  }
+
   async create(employee: Employee): Promise<Employee | undefined> {
     const results = await this.repository.create(employee);
     return results;

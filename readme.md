@@ -82,6 +82,8 @@ TYPEORM_DATABASE = <db>
 TYPEORM_SYNCHRONIZE = <true>
 TYPEORM_LOGGING = <false>
 TYPEORM_ENTITIES = <src/entity/**/*.ts>
+
+JWT_PRIVATE_KEY = <private key>
 ...
 ```
 

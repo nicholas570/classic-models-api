@@ -21,6 +21,14 @@ export class EmployeeRepository implements AppRepository {
     return employee;
   }
 
+  async getOneByEmail(email: string): Promise<Employee | undefined> {
+    const employee = await this.repository.findOne({
+      select: ['employeeNumber', 'email', 'password'],
+      where: { email },
+    });
+    return employee;
+  }
+
   async create(employee: Employee): Promise<Employee | undefined> {
     const newEmployee = await this.repository.save(employee);
     return newEmployee;
