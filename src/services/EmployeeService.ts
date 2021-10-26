@@ -1,6 +1,6 @@
 import { DeleteResult } from 'typeorm';
 import { Employee } from '../entity/Employee';
-import { SearchQueryFilters } from '../interfaces/searchQuery';
+import { SearchQueryFilters } from '../interfaces/searchQueryFilters';
 import { Service } from '../interfaces/service';
 import { EmployeeRepository } from '../repositories/EmployeeRepository';
 

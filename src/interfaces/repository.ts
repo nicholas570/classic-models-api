@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { SearchQueryFilters } from './searchQuery';
+import { SearchQueryFilters } from './searchQueryFilters';
 
 export interface AppRepository {
   repository: Repository<any>;
