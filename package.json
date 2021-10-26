@@ -7,10 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "nodemon",
     "start": "npm run build && node build/index.js",
-    "build": "rimraf ./build && tsc",
+    "build": "rimraf ./build && npm run tsc",
     "lint": "eslint . --ext .ts --fix",
     "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "tsc": "tsc"
   },
   "lint-staged": {
     "src/**/*.ts*": [
