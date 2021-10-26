@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es5", "es6"],
-    "target": "ESNext",
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "./build",
