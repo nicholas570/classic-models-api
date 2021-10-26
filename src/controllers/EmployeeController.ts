@@ -4,6 +4,7 @@ import { DeleteException } from '../exceptions/DeleteException';
 import { EmptySearchException } from '../exceptions/EmptySearchException';
 import { EntityNotFoundException } from '../exceptions/NotFoundException';
 import { RouteController } from '../interfaces/Controller';
+import passwordMiddleware from '../middlewares/passwordMiddelware';
 import { EmployeeService } from '../services/EmployeeService';
 
 export class EmployeeController implements RouteController {
@@ -17,7 +18,7 @@ export class EmployeeController implements RouteController {
   initializeRoutes() {
     this.router.get(`${this.path}`, this.getAll);
     this.router.get(`${this.path}/:employeeNumber`, this.getOne);
-    this.router.post(`${this.path}`, this.create);
+    this.router.post(`${this.path}`, passwordMiddleware.hash, this.create);
     this.router.put(`${this.path}/:employeeNumber`, this.update);
     this.router.delete(`${this.path}/:employeeNumber`, this.delete);
   }
