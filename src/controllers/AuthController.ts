@@ -31,8 +31,6 @@ export class AuthController implements BaseController {
       const token = jwt.sign({ id, email }, process.env.JWT_PRIVATE_KEY!, { algorithm: 'HS256' });
       return token;
     } catch (error) {
-      console.log('error');
-
       throw error;
     }
   }
@@ -41,7 +39,6 @@ export class AuthController implements BaseController {
     try {
       const employeeService = new EmployeeService();
       const result = await employeeService.getOneByEmail(req.body.email);
-
       if (result) {
         const isValidCredentials = await AuthController.verifyPassword(req.body.password, result.password);
         const token = await AuthController.generateToken(result.employeeNumber, result.email);
