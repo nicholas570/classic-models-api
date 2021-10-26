@@ -1,4 +1,4 @@
-import { AppRepository } from '../interfaces/Repository';
+import { AppRepository } from '../interfaces/repository';
 import { DeleteResult, getConnection } from 'typeorm';
 import { Office } from '../entity/Office';
 

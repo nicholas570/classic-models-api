@@ -1,7 +1,7 @@
-import { AppRepository } from '../interfaces/Repository';
+import { AppRepository } from '../interfaces/repository';
 import { DeleteResult, getConnection } from 'typeorm';
 import { Employee } from '../entity/Employee';
-import { SearchQueryFilters } from '../interfaces/SearchQuery';
+import { SearchQueryFilters } from '../interfaces/searchQuery';
 
 export class EmployeeRepository implements AppRepository {
   repository = getConnection().getRepository(Employee);

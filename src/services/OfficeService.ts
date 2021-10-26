@@ -1,6 +1,6 @@
 import { DeleteResult } from 'typeorm';
 import { Office } from '../entity/Office';
-import { Service } from '../interfaces/Service';
+import { Service } from '../interfaces/service';
 import { OfficeRepository } from '../repositories/OfficeRepository';
 
 export class OfficeService implements Service {

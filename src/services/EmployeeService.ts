@@ -1,7 +1,7 @@
 import { DeleteResult } from 'typeorm';
 import { Employee } from '../entity/Employee';
-import { SearchQueryFilters } from '../interfaces/SearchQuery';
-import { Service } from '../interfaces/Service';
+import { SearchQueryFilters } from '../interfaces/searchQuery';
+import { Service } from '../interfaces/service';
 import { EmployeeRepository } from '../repositories/EmployeeRepository';
 
 export class EmployeeService implements Service {

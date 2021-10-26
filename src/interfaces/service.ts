@@ -1,5 +1,5 @@
-import { AppRepository } from './Repository';
-import { SearchQueryFilters } from './SearchQuery';
+import { AppRepository } from './repository';
+import { SearchQueryFilters } from './searchQuery';
 
 export interface Service {
   repository: AppRepository;
