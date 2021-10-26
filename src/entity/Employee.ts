@@ -27,6 +27,6 @@ export class Employee implements EmployeeModel {
   @Column({ type: 'varchar', length: 50, nullable: false })
   jobTitle!: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column({ type: 'varchar', length: 255, nullable: false, select: false })
   password!: string;
 }
