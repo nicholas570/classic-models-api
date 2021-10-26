@@ -6,6 +6,8 @@ export class OfficeRepository implements AppRepository {
   repository = getConnection().getRepository(Office);
 
   async getAll(): Promise<Office[]> {
+    console.log(this.repository);
+
     const offices = await this.repository.find();
     return offices;
   }
