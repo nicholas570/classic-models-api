@@ -16,7 +16,7 @@ export class Employee implements EmployeeModel {
   @Column({ type: 'varchar', length: 10, nullable: false })
   extension!: string;
 
-  @Column({ type: 'varchar', length: 100, nullable: false })
+  @Column({ type: 'varchar', length: 100, nullable: false, unique: true })
   email!: string;
 
   @Column({ type: 'varchar', length: 10, nullable: false })
@@ -24,11 +24,9 @@ export class Employee implements EmployeeModel {
   @JoinColumn({ name: 'officeCode' })
   officeCode!: string;
 
-  @Column({ type: 'int', nullable: true })
-  @OneToOne(() => Employee)
-  @JoinColumn({ name: 'employeeNumber' })
-  manager!: number | null;
-
   @Column({ type: 'varchar', length: 50, nullable: false })
   jobTitle!: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: false })
+  password!: string;
 }
