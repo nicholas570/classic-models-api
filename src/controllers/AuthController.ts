@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { BaseController } from '../interfaces/Controller';
+import { BaseController } from '../interfaces/controller';
 import { EmployeeService } from '../services/EmployeeService';
 import { EntityNotFoundException } from '../exceptions/NotFoundException';
 

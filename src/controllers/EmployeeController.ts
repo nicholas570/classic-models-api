@@ -3,7 +3,7 @@ import { Employee } from '../entity/Employee';
 import { DeleteException } from '../exceptions/DeleteException';
 import { EmptySearchException } from '../exceptions/EmptySearchException';
 import { EntityNotFoundException } from '../exceptions/NotFoundException';
-import { RouteController } from '../interfaces/Controller';
+import { RouteController } from '../interfaces/controller';
 import passwordMiddleware from '../middlewares/passwordMiddelware';
 import { EmployeeService } from '../services/EmployeeService';
 

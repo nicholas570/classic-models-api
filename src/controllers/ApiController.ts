@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { BaseController } from '../interfaces/Controller';
+import { BaseController } from '../interfaces/controller';
 import { AuthController } from './AuthController';
 import { EmployeeController } from './EmployeeController';
 import { OfficeController } from './OfficeController';

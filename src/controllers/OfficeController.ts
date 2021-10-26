@@ -3,7 +3,7 @@ import { Office } from '../entity/Office';
 import { DeleteException } from '../exceptions/DeleteException';
 import { EmptySearchException } from '../exceptions/EmptySearchException';
 import { EntityNotFoundException } from '../exceptions/NotFoundException';
-import { RouteController } from '../interfaces/Controller';
+import { RouteController } from '../interfaces/controller';
 import { OfficeService } from '../services/OfficeService';
 
 export class OfficeController implements RouteController {
