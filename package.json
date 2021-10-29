@@ -10,7 +10,8 @@
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts --fix",
     "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "typeorm:cli": "ts-node ./node_modules/typeorm/cli"
   },
   "lint-staged": {
     "src/**/*.ts*": [
