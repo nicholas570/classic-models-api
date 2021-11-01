@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
-import { ApiResponse, ErrorResponse, ResponseContent } from '../controllers/apiResponse';
+import { NextFunction, Request } from 'express';
+import { ApiResponse, ErrorResponse, ResponseContent } from '../interfaces/apiResponse';
 import HttpException from '../exceptions/HttpException';
 
 const errorMiddleware = (

@@ -1,10 +1,10 @@
-import { NextFunction, Request, Response, Router } from 'express';
+import { NextFunction, Request, Router } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { BaseController } from '../interfaces/controller';
 import { EmployeeService } from '../services/EmployeeService';
 import { EntityNotFoundException } from '../exceptions/NotFoundException';
-import { ApiResponse, AuthResponse, ResponseContent } from './apiResponse';
+import { ApiResponse, AuthResponse, ResponseContent } from '../interfaces/apiResponse';
 
 export class AuthController implements BaseController {
   path = '/auth';
