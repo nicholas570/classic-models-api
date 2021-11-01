@@ -1,6 +1,6 @@
-// custom your cors configuration here
+// TODO: set origin in env variables
 const corsOptions = {
-  origin: 'http://example.com',
+  origin: '*',
   optionsSuccessStatus: 200,
 };
 

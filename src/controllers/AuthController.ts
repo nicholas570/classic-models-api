@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { BaseController } from '../interfaces/controller';
 import { EmployeeService } from '../services/EmployeeService';
 import { EntityNotFoundException } from '../exceptions/NotFoundException';
+import { ApiResponse, AuthResponse, ResponseContent } from './apiResponse';
 
 export class AuthController implements BaseController {
   path = '/auth';
@@ -35,14 +36,18 @@ export class AuthController implements BaseController {
     }
   }
 
-  async authenticate(req: Request, res: Response, next: NextFunction): Promise<Response<any> | undefined> {
+  async authenticate(
+    req: Request,
+    res: ApiResponse<ResponseContent<AuthResponse>>,
+    next: NextFunction
+  ): Promise<ApiResponse<ResponseContent<AuthResponse>> | undefined> {
     try {
       const employeeService = new EmployeeService();
       const result = await employeeService.getOneByEmail(req.body.email);
       if (result) {
         const isValidCredentials = await AuthController.verifyPassword(req.body.password, result.password);
         const token = await AuthController.generateToken(result.employeeNumber, result.email);
-        return res.status(200).json({ isAuthenticated: isValidCredentials, token });
+        return res.status(200).json({ payload: { isAuthenticated: isValidCredentials, token } });
       } else {
         throw new EntityNotFoundException(req.body.email, 'Employee');
       }
