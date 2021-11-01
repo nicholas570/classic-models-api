@@ -18,3 +18,7 @@ export interface AuthResponse {
   isAuthenticated: boolean;
   token: string;
 }
+
+export interface SuccessResponse {
+  message: string;
+}
