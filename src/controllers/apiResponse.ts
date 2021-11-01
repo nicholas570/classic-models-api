@@ -9,6 +9,11 @@ export interface ApiResponse<T> extends Response {
   json: Send<T, this>;
 }
 
+export interface ErrorResponse {
+  status: number;
+  message: string;
+}
+
 export interface AuthResponse {
   isAuthenticated: boolean;
   token: string;
