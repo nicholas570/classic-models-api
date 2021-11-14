@@ -1,5 +1,6 @@
 import { DeleteResult } from 'typeorm';
 import { Employee } from '../entity/Employee';
+import { EntityNotFoundException } from '../exceptions/NotFoundException';
 import { SearchQueryFilters } from '../interfaces/searchQueryFilters';
 import { Service } from '../interfaces/service';
 import { EmployeeRepository } from '../repositories/EmployeeRepository';
@@ -24,6 +25,7 @@ export class EmployeeService implements Service {
 
   async getOneByEmail(email: string): Promise<Employee | undefined> {
     const result = await this.repository.getOneByEmail(email);
+    if (!result) throw new EntityNotFoundException(email, 'Employee');
     return result;
   }
 

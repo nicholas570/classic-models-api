@@ -15,7 +15,6 @@ export interface ErrorResponse {
 }
 
 export interface AuthResponse {
-  isAuthenticated: boolean;
   token: string;
 }
 
