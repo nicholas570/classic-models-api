@@ -32,11 +32,7 @@ export class EmployeeController implements RouteController {
     try {
       const employeeService = new EmployeeService();
       const results = await employeeService.getAll(req.query);
-      if (results.length) {
-        return res.status(200).json({ payload: results });
-      } else {
-        throw new EmptySearchException(`employees ${Object.entries(req.query).length ? 'with these filters' : ''}`);
-      }
+      return res.status(200).json({ payload: results });
     } catch (error) {
       next(error);
     }
@@ -50,11 +46,7 @@ export class EmployeeController implements RouteController {
     try {
       const employeeService = new EmployeeService();
       const result = await employeeService.getOne(parseInt(req.params.employeeNumber));
-      if (result) {
-        return res.status(200).json({ payload: result });
-      } else {
-        throw new EntityNotFoundException(req.params.employeeNumber, 'Employee');
-      }
+      return res.status(200).json({ payload: result! });
     } catch (error) {
       next(error);
     }
@@ -95,14 +87,10 @@ export class EmployeeController implements RouteController {
   ): Promise<ApiResponse<ResponseContent<SuccessResponse>> | undefined> {
     try {
       const employeeService = new EmployeeService();
-      const result = await employeeService.delete(req.params.employeeNumber);
-      if (result.affected) {
-        return res
-          .status(200)
-          .json({ payload: { message: `Successfuly deleted employee ${req.params.employeeNumber}` } });
-      } else {
-        throw new DeleteException(req.params.employeeNumber, 'employee');
-      }
+      await employeeService.delete(req.params.employeeNumber);
+      return res
+        .status(200)
+        .json({ payload: { message: `Successfuly deleted employee ${req.params.employeeNumber}` } });
     } catch (error) {
       next(error);
     }

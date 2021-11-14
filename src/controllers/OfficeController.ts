@@ -31,11 +31,7 @@ export class OfficeController implements RouteController {
     try {
       const officeService = new OfficeService();
       const results = await officeService.getAll();
-      if (results.length) {
-        return res.status(200).json({ payload: results });
-      } else {
-        throw new EmptySearchException('offices');
-      }
+      return res.status(200).json({ payload: results });
     } catch (error) {
       next(error);
     }
@@ -49,11 +45,7 @@ export class OfficeController implements RouteController {
     try {
       const officeService = new OfficeService();
       const result = await officeService.getOne(req.params.officeCode);
-      if (result) {
-        return res.status(200).json({ payload: result });
-      } else {
-        throw new EntityNotFoundException(req.params.officeCode, 'Office');
-      }
+      return res.status(200).json({ payload: result! });
     } catch (error) {
       next(error);
     }
@@ -94,12 +86,8 @@ export class OfficeController implements RouteController {
   ): Promise<ApiResponse<ResponseContent<SuccessResponse>> | undefined> {
     try {
       const officeService = new OfficeService();
-      const result = await officeService.delete(req.params.officeCode);
-      if (result.affected) {
-        return res.status(200).json({ payload: { message: `Successfuly deleted office ${req.params.officeCode}` } });
-      } else {
-        throw new DeleteException(req.params.officeCode, 'office');
-      }
+      await officeService.delete(req.params.officeCode);
+      return res.status(200).json({ payload: { message: `Successfuly deleted office ${req.params.officeCode}` } });
     } catch (error) {
       next(error);
     }
