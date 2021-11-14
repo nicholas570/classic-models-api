@@ -29,13 +29,9 @@ export class AuthController implements BaseController {
       const authService = new AuthService();
       const result = await employeeService.getOneByEmail(req.body.email);
       if (result) {
-        const isValidCredentials = await authService.verifyPassword(req.body.password, result.password);
-        if (isValidCredentials) {
-          const token = await authService.generateToken(result.employeeNumber, result.email);
-          return res.status(200).json({ payload: { token } });
-        } else {
-          throw new EntityNotFoundException(req.body.email, 'Employee');
-        }
+        await authService.verifyPassword(req.body.password, result.password, req.body.email);
+        const token = await authService.generateToken(result.employeeNumber, result.email);
+        return res.status(200).json({ payload: { token } });
       }
     } catch (error) {
       next(error);
